@@ -4,7 +4,7 @@ import Sushi from '../components/Sushi'
 
 
 const SushiContainer = props => {
-  const {servedSushi, eatSushi, eatenSushi} = props;
+  const {servedSushi, eatSushi, eatenSushi, serveSushi} = props;
   return (
     <Fragment>
       <div className="belt">
@@ -18,7 +18,7 @@ const SushiContainer = props => {
             />
           )
         }
-        <MoreButton />
+        <MoreButton serveSushi={serveSushi}/>
       </div>
     </Fragment>
   )

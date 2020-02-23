@@ -10,7 +10,7 @@ class App extends Component {
     super()
     this.state = {
       allSushi: [],
-      wallet: 100,
+      wallet: 300,
       servedSushi: [], 
       eatenSushi: []
     }
@@ -28,7 +28,7 @@ class App extends Component {
       }, () => this.serveSushi()))
   }
 
-  serveSushi(){
+  serveSushi = state => {
     let allSushi = [...this.state.allSushi]
     let servedSushi = allSushi.splice(0,4)
     this.setState({
@@ -40,8 +40,9 @@ class App extends Component {
   eatSushi = id => {
     let selectedSushi = this.state.servedSushi.filter(sushi => sushi.id === id)[0]
     let price = selectedSushi.price
+    let alreadyEaten = this.state.eatenSushi.includes(selectedSushi)
 
-    if (price < this.state.wallet ){
+    if (price < this.state.wallet && alreadyEaten === false){
       this.setState({
         eatenSushi: [...this.state.eatenSushi, selectedSushi], 
         wallet: this.state.wallet - price
@@ -55,11 +56,15 @@ class App extends Component {
     return ( 
       <div className="app">
         <SushiContainer  
+          serveSushi={this.serveSushi}
           servedSushi={servedSushi}
           eatSushi={this.eatSushi}
           eatenSushi={eatenSushi}
+          />
+        <Table 
+          wallet={wallet}
+          eatenSushi={eatenSushi}
         />
-        <Table wallet={wallet}/>
       </div>
     );
   }
