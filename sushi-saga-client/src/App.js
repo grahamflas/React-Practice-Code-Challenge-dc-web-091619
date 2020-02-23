@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       allSushi: [],
       wallet: 100,
-      servedSushi: []
+      servedSushi: [], 
+      eatenSushi: []
     }
   }
 
@@ -24,18 +25,25 @@ class App extends Component {
       .then(response => response.json())
       .then(sushiData => this.setState({
         allSushi: sushiData
-      }))
+      }, () => this.serveSushi()))
   }
 
   serveSushi(){
     let allSushiCopy = [...this.state.allSushi]
-    let newServedSushi = 
+    let newServedSushi = allSushiCopy.splice(0,4)
+    this.setState({
+      allSushi: allSushiCopy, 
+      servedSushi: newServedSushi
+    })
   }
 
   render() {
+    const {servedSushi} = this.state
     return ( 
       <div className="app">
-        <SushiContainer  />
+        <SushiContainer  
+          servedSushi={servedSushi}
+        />
         <Table />
       </div>
     );

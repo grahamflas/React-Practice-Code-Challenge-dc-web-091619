@@ -3,11 +3,14 @@ import MoreButton from '../components/MoreButton'
 import Sushi from '../components/Sushi'
 
 
-const SushiContainer = (props) => {
+const SushiContainer = props => {
+  const {servedSushi} = props;
   return (
     <Fragment>
       <div className="belt">
-        <Sushi />
+        {
+          servedSushi.map(sushiInfo => <Sushi key={sushiInfo.id} sushiInfo={sushiInfo}/>)
+        }
         <MoreButton />
       </div>
     </Fragment>
