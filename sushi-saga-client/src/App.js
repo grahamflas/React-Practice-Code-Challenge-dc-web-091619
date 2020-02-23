@@ -28,7 +28,7 @@ class App extends Component {
       }, () => this.serveSushi()))
   }
 
-  serveSushi = state => {
+  serveSushi = () => {
     let allSushi = [...this.state.allSushi]
     let servedSushi = allSushi.splice(0,4)
     this.setState({
