@@ -29,12 +29,16 @@ class App extends Component {
   }
 
   serveSushi(){
-    let allSushiCopy = [...this.state.allSushi]
-    let newServedSushi = allSushiCopy.splice(0,4)
+    let allSushi = [...this.state.allSushi]
+    let servedSushi = allSushi.splice(0,4)
     this.setState({
-      allSushi: allSushiCopy, 
-      servedSushi: newServedSushi
+      allSushi, 
+      servedSushi
     })
+  }
+
+  eatSushi = id => {
+    console.log(`Eating sushi ${id}`)
   }
 
   render() {
@@ -43,6 +47,7 @@ class App extends Component {
       <div className="app">
         <SushiContainer  
           servedSushi={servedSushi}
+          eatSushi={this.eatSushi}
         />
         <Table />
       </div>

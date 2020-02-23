@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
-  const {img_url} = props
+  const {sushiInfo: {id, img_url}, eatSushi} = props
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
+           onClick={() => eatSushi(id)}>
         { 
           /* Tell me if this sushi has been eaten! */ 
           true ?
