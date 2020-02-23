@@ -1,21 +1,23 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
-  const {sushiInfo: {id, img_url}, eatSushi} = props
+  const {sushiInfo: {id, img_url, name, price}, eatSushi, eatenSushi} = props
   return (
     <div className="sushi">
       <div className="plate" 
            onClick={() => eatSushi(id)}>
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          true ?
+          eatenSushi.forEach(sushi => {
+            if (sushi.id === id) return true
+          })
+          ?
             null
           :
-            <img src={img_url} width="100%" />
+            <img src={img_url} width="50%" />
         }
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {name} - ${price}
       </h4>
     </div>
   )

@@ -38,18 +38,28 @@ class App extends Component {
   }
 
   eatSushi = id => {
-    console.log(`Eating sushi ${id}`)
+    let selectedSushi = this.state.servedSushi.filter(sushi => sushi.id === id)[0]
+    let price = selectedSushi.price
+
+    if (price < this.state.wallet ){
+      this.setState({
+        eatenSushi: [...this.state.eatenSushi, selectedSushi], 
+        wallet: this.state.wallet - price
+      })
+    }
+    
   }
 
   render() {
-    const {servedSushi} = this.state
+    const {servedSushi, wallet, eatenSushi} = this.state
     return ( 
       <div className="app">
         <SushiContainer  
           servedSushi={servedSushi}
           eatSushi={this.eatSushi}
+          eatenSushi={eatenSushi}
         />
-        <Table />
+        <Table wallet={wallet}/>
       </div>
     );
   }

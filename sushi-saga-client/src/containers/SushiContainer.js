@@ -4,7 +4,7 @@ import Sushi from '../components/Sushi'
 
 
 const SushiContainer = props => {
-  const {servedSushi, eatSushi} = props;
+  const {servedSushi, eatSushi, eatenSushi} = props;
   return (
     <Fragment>
       <div className="belt">
@@ -14,6 +14,7 @@ const SushiContainer = props => {
               key={sushiInfo.id} 
               sushiInfo={sushiInfo}
               eatSushi={eatSushi}
+              eatenSushi={eatenSushi}
             />
           )
         }
