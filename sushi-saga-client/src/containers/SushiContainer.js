@@ -14,7 +14,7 @@ const SushiContainer = props => {
               key={sushiInfo.id} 
               sushiInfo={sushiInfo}
               eatSushi={eatSushi}
-              eatenSushi={eatenSushi}
+              eaten={eatenSushi.includes(sushiInfo)}
             />
           )
         }
